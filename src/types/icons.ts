@@ -1,4 +1,4 @@
-export interface SvgIconProps {
+export type SvgIconProps = {
   height?: number;
   width?: number;
   color?: string;
