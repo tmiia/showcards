@@ -2,8 +2,8 @@ import React from 'react';
 import { SvgIconProps } from '@/types/icons';
 
 const ListIcon = ({
-  height = 10,
-  width = 10,
+  height = 12,
+  width = 12,
   color = '#9CA3D2',
   classname = '',
   } : SvgIconProps) => {
