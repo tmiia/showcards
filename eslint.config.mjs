@@ -1,49 +1,53 @@
-import globals from 'globals';
 import js from '@eslint/js';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
-import tseslint from 'typescript-eslint';
-import next from '@next/eslint-plugin-next';
-import prettierPlugin from 'eslint-plugin-prettier';
-import prettierConfig from 'eslint-config-prettier';
+import a11y from 'eslint-plugin-jsx-a11y';
 
-export default tseslint.config(
-  { ignores: ['dist', '.next'] },
+export default [
+  js.configs.recommended,
+
   {
-    files: ['**/*.{ts,tsx,js,jsx}'],
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      ecmaVersion: 2020,
-      sourceType: 'module',
-      globals: {
-        ...globals.browser,
-        React: 'writable',
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        project: './tsconfig.json',
       },
     },
     plugins: {
+      '@typescript-eslint': tsPlugin,
+    },
+    rules: {
+      ...tsPlugin.configs.recommended.rules,
+    },
+  },
+
+  {
+    files: ['**/*.jsx', '**/*.tsx'],
+    languageOptions: {
+      ecmaFeatures: {
+        jsx: true,
+      },
+    },
+    plugins: {
+      react: reactPlugin,
       'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      '@next/next': next,
-      prettier: prettierPlugin,
+      'jsx-a11y': a11y,
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-      'prettier/prettier': 'error',
+      ...reactPlugin.configs.recommended.rules,
+      ...a11y.configs.recommended.rules,
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
     },
   },
-  {
-    name: 'next/core-web-vitals',
-    rules: {
-      ...next.configs['core-web-vitals'].rules,
-    },
-  },
-  {
-    name: 'prettier-overrides',
-    rules: {
-      ...prettierConfig.rules,
-    },
-  }
-);
+];
