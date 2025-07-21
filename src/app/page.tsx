@@ -2,7 +2,7 @@
 
 import CardView from "@/components/cards/ CardView";
 import NewCardModal from "@/components/cards/NewCardModal";
-import Menu from "@/components/menu";
+import Menu from "@/components/Menu";
 import { useState } from "react";
 
 export default function Home() {
