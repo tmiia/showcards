@@ -10,6 +10,14 @@ type ListViewProps = {
 const ListView = ({ cards }: ListViewProps) => {
   const { removeCard } = useCards()
 
+  const formatDate = (timestamp: number) => {
+    const date = new Date(timestamp)
+    const day = date.getDate().toString().padStart(2, '0')
+    const month = (date.getMonth() + 1).toString().padStart(2, '0')
+    const year = date.getFullYear()
+    return `${day}/${month}/${year}`
+  }
+
   return (
     <section className="px-6 pt-20 bg-zinc-900 min-h-screen">
       <motion.header
@@ -45,7 +53,7 @@ const ListView = ({ cards }: ListViewProps) => {
             <div className="flex flex-col">
               <p className="font-medium text-white">{card.text}</p>
               <strong className="text-xs font-light text-zinc-400">
-                {card.createdAt}
+                {formatDate(card.createdAt)}
               </strong>
             </div>
             <button onClick={() => removeCard(card.id)}>
@@ -58,9 +66,6 @@ const ListView = ({ cards }: ListViewProps) => {
     ) : (
       <p className="text-sm text-zinc-500 mt-6">Aucune carte pour le moment.</p>
     )}
-
-
-
 
     </section>
   )
