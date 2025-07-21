@@ -1,6 +1,6 @@
 "use client"
 
-import CardView from "@/components/cards/ CardView";
+import CardView from "@/components/cards/CardView";
 import NewCardModal from "@/components/cards/NewCardModal";
 import Menu from "@/components/Menu";
 import { useState } from "react";
