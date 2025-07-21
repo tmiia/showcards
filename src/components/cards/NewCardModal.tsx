@@ -25,7 +25,7 @@ const NewCardModal = ({ isOpen, onClose }: NewCardModalProps) => {
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col bg-zinc-900 min-h-[90vw] p-4 rounded-lg shadow-md min-w-[95vh] rotate-[90deg]"
+        className="flex flex-col bg-zinc-900 min-h-[90vw] p-4 rounded-4xl shadow-md min-w-[95vh] rotate-[90deg]"
       >
         <div className="flex flex-col justify-center flex-auto font-medium m-0">
           <h2 className="sr-only text-lg font-bold mb-2">Create a new card</h2>
